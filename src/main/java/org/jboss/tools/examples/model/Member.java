@@ -16,25 +16,29 @@ public class Member implements Serializable {
    /** Default value included to remove warning. Remove or modify at will. **/
    private static final long serialVersionUID = 1L;
 
-  /* @Id
-   @GeneratedValue
-   private Long id;*/
+   /*@Id
+   @GeneratedValue*/
+   private Long id;
+   
    @Id
    @NotNull
    @Size(min = 1, max = 25)
    @Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
    private String name;
 
-   /*@NotNull
-   @NotEmpty
-   @Email
-   private String email;*/
 
    /*@NotNull
    @Size(min = 10, max = 12)
    @Digits(fraction = 0, integer = 12)
    @Column(name = "phone_number")
    private String phoneNumber;*/
+   private String email;
+
+   //@NotNull
+   //@Size(min = 10, max = 12)
+   //@Digits(fraction = 0, integer = 12)
+   //@Column(name = "phone_number")
+   private String phoneNumber;
 
    /*public Long getId() {
       return id;
