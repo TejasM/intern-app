@@ -21,7 +21,7 @@
                <td><h:inputText id="name" value="#{newMember.name}" />
                   <h:message for="name" errorClass="invalid" /></td>
             </tr>
-            <tr>
+            <!--  <tr>
                <th style="text-align: right;"><h:outputLabel
                      for="email" value="Email:" /></th>
                <td><h:inputText id="email"
@@ -34,7 +34,7 @@
                <td><h:inputText id="phoneNumber"
                      value="#{newMember.phoneNumber}" /> <h:message
                      for="phoneNumber" errorClass="invalid" /></td>
-            </tr>
+            </tr> -->
          </table>
          <p>
             <h:commandButton id="register"
@@ -50,15 +50,15 @@
       </h:panelGroup>
       <h:dataTable var="_member" value="#{members}"
          rendered="#{not empty members}">
-         <h:column>
+         <!-- <h:column>
             <f:facet name="header">Id</f:facet>
                 #{_member.id}
-            </h:column>
+            </h:column>-->
          <h:column>
             <f:facet name="header">Name</f:facet>
                 #{_member.name}
-            </h:column>
-         <h:column>
+           </h:column>
+         <!-- <h:column>
             <f:facet name="header">Email</f:facet>
                 #{_member.email}
             </h:column>
@@ -69,11 +69,11 @@
          <h:column>
             <f:facet name="header">REST URL</f:facet>
             <a href="#{request.contextPath}/rest/members/#{_member.id}">/rest/members/#{_member.id}</a>
-         </h:column>
-         <f:facet name="footer">
+         </h:column>-->
+         <!-- <f:facet name="footer">
                 REST URL for all members: <a
                href="#{request.contextPath}/rest/members">/rest/members</a>
-         </f:facet>
+         </f:facet>-->
       </h:dataTable>
    </ui:define>
 </ui:composition>
