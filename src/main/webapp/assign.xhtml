@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+      <h1>Welcome to JBoss AS 7!</h1>
+
+      <p>You have successfully deployed a Java EE 6 web application
+         on JBoss AS 7.</p>
+
+      <h:form id="regAssign">
+         <h2>Register (Bean Validation example)</h2>
+         <p>Enforces annotation-based constraints defined on the
+            model class.</p>
+         <table>
+            <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="name" value="Name:" /></th>
+               <td><h:selectOneMenu id="selectMember" value="#{newAssignment.name}">
+               <f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+               <f:selectItems value="#{membersNames}"> </f:selectItems></h:selectOneMenu>
+               <h:inputText value="#{newAssignment.name}" rendered="false" />
+                  <h:message for="name" errorClass="invalid" /></td>
+            </tr>
+             <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="projectName" value="Project:" /></th>
+               <td><h:selectOneMenu value="#{newAssignment.projectName}">
+               <f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+               <f:selectItems value="#{projectsNames}"> </f:selectItems> </h:selectOneMenu> <h:message
+                     for="projectName" errorClass="invalid" /></td>
+            </tr>
+         </table>
+         <p>
+            <h:commandButton id="register"
+               action="#{assignmentRegistration.register}" value="Add Assignment" />
+            <h:outputText value=" New assigment added!"
+               rendered="#{facesContext.postback and empty facesContext.messageList}"
+               style="color: green;" />
+         </p>
+      </h:form>
+       <h:link outcome="/index.xhtml">Add People</h:link>
+       <p>
+       <h:link outcome="/project.xhtml">Add Projects</h:link></p>
+      <h2>Assignments</h2>
+      <h:panelGroup rendered="#{empty assigments}">
+         <em>No Assignments.</em>
+      </h:panelGroup>
+      <h:dataTable var="_assigment" value="#{assignments}"
+         rendered="#{not empty assignments}">
+         <h:column>
+            <f:facet name="header">Name</f:facet>
+                #{_assignment.name}
+           </h:column>
+         <h:column>
+            <f:facet name="header">Project</f:facet>
+                #{_assignment.projectName}
+            </h:column>
+      </h:dataTable>
+   </ui:define>
+</ui:composition>

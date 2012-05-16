@@ -1,6 +1,8 @@
 package org.jboss.tools.examples.data;
 
 import org.jboss.tools.examples.model.Member;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -17,32 +19,54 @@ import javax.persistence.criteria.Root;
 
 @RequestScoped
 public class MemberListProducer {
-   @Inject
-   private EntityManager em;
+	@Inject
+	private EntityManager em;
 
-   private List<Member> members;
+	private List<Member> members;
 
-   // @Named provides access the return value via the EL variable name "members" in the UI (e.g.,
-   // Facelets or JSP view)
-   @Produces
-   @Named
-   public List<Member> getMembers() {
-      return members;
-   }
+	private List<String> membersNames;
 
-   public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Member member) {
-      retrieveAllMembersOrderedByName();
-   }
+	// @Named provides access the return value via the EL variable name
+	// "members" in the UI (e.g.,
+	// Facelets or JSP view)
+	@Produces
+	@Named
+	public List<Member> getMembers() {
+		return members;
+	}
 
-   @PostConstruct
-   public void retrieveAllMembersOrderedByName() {
-      CriteriaBuilder cb = em.getCriteriaBuilder();
-      CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
-      Root<Member> member = criteria.from(Member.class);
-      // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-      // feature in JPA 2.0
-      // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
-      criteria.select(member).orderBy(cb.asc(member.get("name")));
-      members = em.createQuery(criteria).getResultList();
-   }
+	@Produces
+	@Named
+	public List<String> getMembersNames() {
+		return membersNames;
+	}
+
+	public void onMemberListChanged(
+			@Observes(notifyObserver = Reception.IF_EXISTS) final Member member) {
+		retrieveAllMembersOrderedByName();
+	}
+
+	@PostConstruct
+	public void retrieveAllMembersOrderedByName() {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
+		Root<Member> member = criteria.from(Member.class);
+		// Swap criteria statements if you would like to try out type-safe
+		// criteria queries, a new
+		// feature in JPA 2.0
+		// criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
+		criteria.select(member).orderBy(cb.asc(member.get("name")));
+		members = em.createQuery(criteria).getResultList();
+		toNames();
+	}
+
+	private void toNames() {
+		if(membersNames == null){
+			membersNames = new ArrayList<String>();
+		}
+		// TODO Auto-generated method stub
+		for (int i = 0; i < members.size(); i++) {
+			membersNames.add(members.get(i).getName());			
+		}
+	}
 }

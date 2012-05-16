@@ -43,7 +43,7 @@ public class AssignmentListProducer {
       // Swap criteria statements if you would like to try out type-safe criteria queries, a new
       // feature in JPA 2.0
       // criteria.select(Assignment).orderBy(cb.asc(Assignment.get(Assignment_.name)));
-      criteria.select(Assignment).orderBy(cb.asc(Assignment.get("AssignmentName")));
+      criteria.select(Assignment).orderBy(cb.asc(Assignment.get("projectName")));
       assignments = emAssignment.createQuery(criteria).getResultList();
    }
 }

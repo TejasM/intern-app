@@ -10,7 +10,7 @@
       <p>You have successfully deployed a Java EE 6 web application
          on JBoss AS 7.</p>
 
-      <h:form id="reg">
+      <h:form id="regProject">
          <h2>Register (Bean Validation example)</h2>
          <p>Enforces annotation-based constraints defined on the
             model class.</p>
@@ -38,6 +38,8 @@
          </p>
       </h:form>
        <h:link outcome="/index.xhtml">Add People</h:link>
+       <p>
+       <h:link outcome="/assign.xhtml">Assign Projects</h:link></p>
       <h2>Projects</h2>
       <h:panelGroup rendered="#{empty members}">
          <em>No Projects.</em>
