@@ -39,12 +39,12 @@ public class AssignmentRegistration {
    }
 
    public void register() throws Exception {
-      logAssignment.info("Adding New Assignment for" + newAssignment.getName() + "for project" + newAssignment.getProjectName());
+      logAssignment.info("Adding New Assignment for " + newAssignment.getName() + " for project " + newAssignment.getProjectName());
       emAssignment.persist(newAssignment);
       AssignmentEventSrc.fire(newAssignment);
       initNewAssignment();
    }
-
+   
    @PostConstruct
    public void initNewAssignment() {
       newAssignment = new Assignment();

@@ -41,7 +41,7 @@
        <p>
        <h:link outcome="/assign.xhtml">Assign Projects</h:link></p>
       <h2>Projects</h2>
-      <h:panelGroup rendered="#{empty members}">
+      <h:panelGroup rendered="#{empty projects}">
          <em>No Projects.</em>
       </h:panelGroup>
       <h:dataTable var="_project" value="#{projects}"

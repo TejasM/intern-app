@@ -51,4 +51,5 @@ public class Project implements Serializable {
 	public void setMaxPeople(Long maxPeople) {
 		this.maxPeople = maxPeople;
 	}
+
 }

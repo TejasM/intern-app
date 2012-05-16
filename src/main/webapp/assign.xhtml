@@ -19,16 +19,15 @@
                <th style="text-align: right;"><h:outputLabel
                      for="name" value="Name:" /></th>
                <td><h:selectOneMenu id="selectMember" value="#{newAssignment.name}">
-               <f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+               
                <f:selectItems value="#{membersNames}"> </f:selectItems></h:selectOneMenu>
-               <h:inputText value="#{newAssignment.name}" rendered="false" />
                   <h:message for="name" errorClass="invalid" /></td>
             </tr>
              <tr>
                <th style="text-align: right;"><h:outputLabel
                      for="projectName" value="Project:" /></th>
                <td><h:selectOneMenu value="#{newAssignment.projectName}">
-               <f:selectItem itemValue="#{null}" itemLabel="-- select one --" />
+
                <f:selectItems value="#{projectsNames}"> </f:selectItems> </h:selectOneMenu> <h:message
                      for="projectName" errorClass="invalid" /></td>
             </tr>
@@ -45,10 +44,10 @@
        <p>
        <h:link outcome="/project.xhtml">Add Projects</h:link></p>
       <h2>Assignments</h2>
-      <h:panelGroup rendered="#{empty assigments}">
+      <h:panelGroup rendered="#{empty assignments}">
          <em>No Assignments.</em>
       </h:panelGroup>
-      <h:dataTable var="_assigment" value="#{assignments}"
+      <h:dataTable var="_assignment" value="#{assignments}"
          rendered="#{not empty assignments}">
          <h:column>
             <f:facet name="header">Name</f:facet>

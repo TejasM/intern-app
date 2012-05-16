@@ -5,15 +5,16 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
 @XmlRootElement
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "projectName"}))
 public class Assignment implements Serializable {
 	/** Default value included to remove warning. Remove or modify at will. **/
 	private static final long serialVersionUID = 1L;
@@ -29,8 +30,10 @@ public class Assignment implements Serializable {
 
 	@NotNull
 	@NotEmpty
-	@Email
+	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
 	private String name;
+	
+	
 
 
 	public String getProjectName() {
@@ -56,5 +59,6 @@ public class Assignment implements Serializable {
 	public void setAssignmentId(Long assignmentId) {
 		this.assignmentId = assignmentId;
 	}
+
 
 }

@@ -34,7 +34,6 @@ public class ProjectListProducer {
 	public List<Project> getProjects() {
 		return projects;
 	}
-	
 	@Produces
 	@Named
 	public List<String> getProjectsNames() {
