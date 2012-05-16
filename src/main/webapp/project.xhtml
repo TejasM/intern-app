@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+      <h1>Welcome to JBoss AS 7!</h1>
+
+      <p>You have successfully deployed a Java EE 6 web application
+         on JBoss AS 7.</p>
+
+      <h:form id="reg">
+         <h2>Register (Bean Validation example)</h2>
+         <p>Enforces annotation-based constraints defined on the
+            model class.</p>
+         <table>
+            <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="name" value="Name:" /></th>
+               <td><h:inputText id="name" value="#{newProject.name}" />
+                  <h:message for="" errorClass="invalid" /></td>
+            </tr>
+             <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="email" value="Max People on the Project:" /></th>
+               <td><h:inputText id="maxPeople"
+                     value="#{newProject.maxPeople}" /> <h:message
+                     for="maxPeople" errorClass="invalid" /></td>
+            </tr>
+         </table>
+         <p>
+            <h:commandButton id="register"
+               action="#{projectRegistration.register}" value="Register" />
+            <h:outputText value="People"
+               rendered="#{facesContext.postback and empty facesContext.messageList}"
+               style="color: green;" />
+         </p>
+      </h:form>
+       <h:link outcome="/index.xhtml">Add People</h:link>
+      <h2>Members</h2>
+      <!-- <h:panelGroup rendered="#{empty members}">
+         <em>No registered members.</em>
+      </h:panelGroup>
+      <h:dataTable var="_project" value="#{projects}"
+         rendered="#{not empty projects}">
+         <h:column>
+            <f:facet name="header">Name</f:facet>
+                #{_project.name}
+           </h:column>
+         <h:column>
+            <f:facet name="header">Max Number of People</f:facet>
+                #{_project.maxPeople}
+            </h:column>
+      </h:dataTable> -->
+   </ui:define>
+</ui:composition>
