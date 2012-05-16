@@ -32,15 +32,15 @@
          <p>
             <h:commandButton id="register"
                action="#{projectRegistration.register}" value="Register" />
-            <h:outputText value="People"
+            <h:outputText value="Successfully added the project"
                rendered="#{facesContext.postback and empty facesContext.messageList}"
                style="color: green;" />
          </p>
       </h:form>
        <h:link outcome="/index.xhtml">Add People</h:link>
-      <h2>Members</h2>
-      <!-- <h:panelGroup rendered="#{empty members}">
-         <em>No registered members.</em>
+      <h2>Projects</h2>
+      <h:panelGroup rendered="#{empty members}">
+         <em>No Projects.</em>
       </h:panelGroup>
       <h:dataTable var="_project" value="#{projects}"
          rendered="#{not empty projects}">
@@ -49,9 +49,9 @@
                 #{_project.name}
            </h:column>
          <h:column>
-            <f:facet name="header">Max Number of People</f:facet>
+            <f:facet name="header">Number of People on Project</f:facet>
                 #{_project.maxPeople}
             </h:column>
-      </h:dataTable> -->
+      </h:dataTable>
    </ui:define>
 </ui:composition>

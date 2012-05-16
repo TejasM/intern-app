@@ -43,7 +43,7 @@ public class ProjectListProducer {
       // Swap criteria statements if you would like to try out type-safe criteria queries, a new
       // feature in JPA 2.0
       // criteria.select(Project).orderBy(cb.asc(Project.get(Project_.name)));
-      criteria.select(Project).orderBy(cb.asc(Project.get("name")));
+      criteria.select(Project).orderBy(cb.asc(Project.get("projectName")));
       projects = emProject.createQuery(criteria).getResultList();
    }
 }
