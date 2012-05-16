@@ -26,7 +26,7 @@
              <tr>
                <th style="text-align: right;"><h:outputLabel
                      for="projectName" value="Project:" /></th>
-               <td><h:selectOneMenu value="#{newAssignment.projectName}">
+               <td><h:selectOneMenu id="selectProject" value="#{newAssignment.projectName}">
 
                <f:selectItems value="#{projectsNames}"> </f:selectItems> </h:selectOneMenu> <h:message
                      for="projectName" errorClass="invalid" /></td>

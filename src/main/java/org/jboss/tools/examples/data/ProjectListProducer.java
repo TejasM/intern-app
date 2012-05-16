@@ -66,7 +66,7 @@ public class ProjectListProducer {
 		toNames();
 	}
 
-	private void toNames() {
+	public void toNames() {
 		// TODO Auto-generated method stub
 		if (projectsNames == null) {
 			projectsNames = new ArrayList<String>();
@@ -81,8 +81,7 @@ public class ProjectListProducer {
 			// Swap criteria statements if you would like to try out type-safe
 			// criteria queries, a new
 			// feature in JPA 2.0
-			// criteria.select(Assignment).orderBy(cb.asc(Assignment.get(Assignment_.name)));
-			criteria.select(Assignment).equals(projects.get(i));
+			criteria.select(Assignment).where(cb.equal(Assignment.get("projectName") , projects.get(i).getName()));
 			assignments2 = emAssignment.createQuery(criteria).getResultList();
 			if(assignments2.size() < projects.get(i).getMaxPeople())
 				projectsNames.add(projects.get(i).getName());
